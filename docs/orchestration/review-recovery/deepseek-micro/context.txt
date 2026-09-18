@@ -1,0 +1,40 @@
+    snake: Array.from({ length: 4 }, (_, index) => ({ x: headX - index, y: headY })),
+    food: null,
+    score: 0,
+    combo: 0,
+    status: "ready",
+    ticks: 0,
+    foodAge: 0,
+    foods: 0,
+    _rng: (Number(seed) >>> 0) || 1,
+  };
+  if (!placeFood(state)) state.status = "won";
+  return state;
+}
+
+export function queueDirection(state, dir) {
+  if (state.status !== "running" || !Object.hasOwn(VECTORS, dir) || state.queue.length >= 2) return false;
+  const previous = state.queue.at(-1) ?? state.dir;
+  if (dir === previous || dir === OPPOSITE[previous]) return false;
+  state.queue.push(dir);
+
+test("creates a centered, deterministic game without placing food on the snake", () => {
+  const a = createGame({ seed: 42 });
+  const b = createGame({ seed: 42 });
+  assert.deepEqual(a.food, b.food);
+  assert.equal(a.status, "ready");
+  assert.equal(a.snake.length, 4);
+  assert.equal(a.snake.some((part) => part.x === a.food.x && part.y === a.food.y), false);
+});
+
+test("rejects reversals and handles two fast queued turns relative to the last input", () => {
+  const state = running();
+  assert.equal(queueDirection(state, "left"), false);
+  assert.equal(queueDirection(state, "up"), true);
+  assert.equal(queueDirection(state, "left"), true);
+  assert.equal(queueDirection(state, "down"), false);
+  assert.equal(queueDirection(state, "right"), false);
+  tick(state);
+  assert.equal(state.dir, "up");
+  tick(state);
+  assert.equal(state.dir, "left");

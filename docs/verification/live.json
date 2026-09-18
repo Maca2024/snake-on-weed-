@@ -1,0 +1,32 @@
+{
+  "browser": "Chromium",
+  "version": "143.0.7499.4",
+  "desktop": "1440x1150",
+  "mobile": "390x844 DPR2",
+  "checks": [
+    "start",
+    "keyboard turn",
+    "pause/resume",
+    "classic wall death",
+    "restart",
+    "blur auto-pause",
+    "mode persistence",
+    "audio toggle",
+    "calm toggle",
+    "reduced motion",
+    "touch controls",
+    "no horizontal overflow",
+    "no JavaScript errors",
+    "real food pickup",
+    "best score persistence",
+    "blocked storage",
+    "320px viewport",
+    "end paused run",
+    "no external network requests"
+  ],
+  "errors": [],
+  "url": "https://maca2024.github.io/snake-on-weed-/",
+  "tested_commit": "03a5df1218834c776b43428007141d9ccc2604fc",
+  "timestamp": "2026-09-18T18:33:38.440793+00:00",
+  "github_workflow": "https://github.com/Maca2024/snake-on-weed-/actions/runs/35380622248"
+}

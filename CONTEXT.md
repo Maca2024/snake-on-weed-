@@ -30,3 +30,11 @@ Run `npm test` and `python scripts/test_browser.py` after changes. Test results 
 ## Scope retained
 
 Original Python files and tracked virtual environment are unchanged. The browser game does not fix historical Python behavior. No production LiteLLM configuration is modified by the game project. Publish only `index.html`, `src/`, and `assets/`; exclude the virtual environment and orchestration tooling.
+
+## Delivered verification (18 September 2026)
+
+- Public game: https://maca2024.github.io/snake-on-weed-/
+- Game commit `03a5df1`: 10 engine tests and 19 browser checks passed, locally and on GitHub Actions. The published site passed the same browser suite.
+- All eight completed design contributions; six completed code-review responses. DeepSeek and Kimi review attempts remained truncated despite bounded targeted recoveries. Do not describe these as eight passing reviewers.
+- Full audit, accepted/rejected findings, and reported token totals: `docs/orchestration/README.md` and `summary.json`.
+- Later audit-only commits do not change the game assets; the live verification identifies the tested game commit explicitly.

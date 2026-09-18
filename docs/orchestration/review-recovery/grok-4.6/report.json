@@ -1,0 +1,63 @@
+{
+  "phase": "review",
+  "timestamp": "2026-09-18T18:30:05.239918+00:00",
+  "requested_models": [
+    "grok-4.6"
+  ],
+  "provider_count": 1,
+  "calls": [
+    {
+      "alias": "grok-4.6",
+      "role": "scoring/game feel",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 1,
+        "prompt_tokens": 2007,
+        "total_tokens": 5080,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 3072,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 512,
+          "text_tokens": 2007,
+          "image_tokens": 0
+        },
+        "num_sources_used": 0,
+        "cost_in_usd_ticks": 216840000
+      },
+      "deployment_id": "123cf6a1074a3dbfa35b8e3789775d91bc32f5f99895787cbb9ae7990ca8b080",
+      "seconds": 51.95
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 48,
+        "prompt_tokens": 146,
+        "total_tokens": 194,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 38,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        }
+      },
+      "seconds": 3.29
+    }
+  ],
+  "all_succeeded": true
+}

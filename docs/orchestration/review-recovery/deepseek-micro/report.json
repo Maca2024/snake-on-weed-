@@ -1,0 +1,58 @@
+{
+  "phase": "review",
+  "timestamp": "2026-09-18T18:32:18.847093+00:00",
+  "requested_models": [
+    "deepseek"
+  ],
+  "provider_count": 1,
+  "calls": [
+    {
+      "alias": "deepseek",
+      "role": "engine/tests",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "usage": {
+        "completion_tokens": 4000,
+        "prompt_tokens": 617,
+        "total_tokens": 4617,
+        "completion_tokens_details": {
+          "reasoning_tokens": 4000
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 617
+      },
+      "deployment_id": "14517a51d0a43f72793920b618d73199ffd8b2ae782adff18a86ae0c09ff296c",
+      "error": "HTTP 200",
+      "seconds": 36.85
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 46,
+        "prompt_tokens": 134,
+        "total_tokens": 180,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 36,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        }
+      },
+      "seconds": 4.11
+    }
+  ],
+  "all_succeeded": false
+}

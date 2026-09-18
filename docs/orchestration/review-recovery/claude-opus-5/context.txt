@@ -1,0 +1,177 @@
+const VECTORS = {
+  up: { x: 0, y: -1 },
+  right: { x: 1, y: 0 },
+  down: { x: 0, y: 1 },
+  left: { x: -1, y: 0 },
+};
+
+const OPPOSITE = { up: "down", right: "left", down: "up", left: "right" };
+
+function random(state) {
+  let value = state._rng >>> 0;
+  value ^= value << 13;
+  value ^= value >>> 17;
+  value ^= value << 5;
+  state._rng = value >>> 0;
+  return state._rng / 0x100000000;
+}
+
+function placeFood(state) {
+  const occupied = new Set(state.snake.map(({ x, y }) => `${x},${y}`));
+  const free = [];
+  for (let y = 0; y < state.rows; y += 1) {
+    for (let x = 0; x < state.cols; x += 1) {
+      if (!occupied.has(`${x},${y}`)) free.push({ x, y });
+    }
+  }
+  if (free.length === 0) {
+    state.food = null;
+    return false;
+  }
+  state.food = free[Math.floor(random(state) * free.length)];
+  return true;
+}
+
+export function createGame({ cols = 28, rows = 22, mode = "drift", seed = 1 } = {}) {
+  if (!Number.isInteger(cols) || cols < 4 || !Number.isInteger(rows) || rows < 1) {
+    throw new RangeError("The board must have at least 4 columns and 1 row");
+  }
+  if (mode !== "drift" && mode !== "classic") {
+    throw new RangeError('mode must be "drift" or "classic"');
+  }
+  const headX = Math.max(3, Math.floor(cols / 2));
+  const headY = Math.floor(rows / 2);
+  const state = {
+    cols,
+    rows,
+    mode,
+    dir: "right",
+    queue: [],
+    snake: Array.from({ length: 4 }, (_, index) => ({ x: headX - index, y: headY })),
+    food: null,
+    score: 0,
+    combo: 0,
+    status: "ready",
+    ticks: 0,
+    foodAge: 0,
+    foods: 0,
+    _rng: (Number(seed) >>> 0) || 1,
+  };
+  if (!placeFood(state)) state.status = "won";
+  return state;
+}
+
+export function queueDirection(state, dir) {
+  if (state.status !== "running" || !Object.hasOwn(VECTORS, dir) || state.queue.length >= 2) return false;
+  const previous = state.queue.at(-1) ?? state.dir;
+  if (dir === previous || dir === OPPOSITE[previous]) return false;
+  state.queue.push(dir);
+  return true;
+}
+
+export function isPeak(state) {
+  const phase = state.foodAge % 40;
+  return phase >= 14 && phase <= 25;
+}
+
+export function tick(state) {
+  if (state.status !== "running") return null;
+
+  if (state.queue.length) state.dir = state.queue.shift();
+  const vector = VECTORS[state.dir];
+  let x = state.snake[0].x + vector.x;
+  let y = state.snake[0].y + vector.y;
+
+  if (state.mode === "drift") {
+    x = (x + state.cols) % state.cols;
+    y = (y + state.rows) % state.rows;
+  } else if (x < 0 || x >= state.cols || y < 0 || y >= state.rows) {
+    state.status = "over";
+    state.queue.length = 0;
+    return "over";
+  }
+
+  const eating = state.food !== null && x === state.food.x && y === state.food.y;
+  const collisionLength = state.snake.length - (eating ? 0 : 1);
+  if (state.snake.slice(0, collisionLength).some((part) => part.x === x && part.y === y)) {
+    state.status = "over";
+    state.queue.length = 0;
+    return "over";
+  }
+
+  const peak = isPeak(state);
+  state.snake.unshift({ x, y });
+  if (!eating) state.snake.pop();
+  state.ticks += 1;
+
+  if (eating) {
+    state.foods += 1;
+    if (peak) {
+      state.combo = Math.min(5, state.combo + 1);
+      state.score += 10 * (1 + state.combo);
+    } else {
+      state.combo = 0;
+      state.score += 10;
+    }
+    state.foodAge = 0;
+    if (!placeFood(state)) {
+      state.status = "won";
+      state.queue.length = 0;
+      return "won";
+    }
+    return peak ? "peak" : "eat";
+  }
+
+  state.foodAge += 1;
+  return "move";
+}
+
+export function togglePause(state) {
+  if (state.status === "running") {
+    state.status = "paused";
+    state.queue.length = 0;
+  } else if (state.status === "paused") {
+    state.status = "running";
+  }
+  return state.status;
+}
+import {createGame,queueDirection,tick,togglePause,isPeak} from './engine.js';
+
+const $=id=>document.getElementById(id);
+const canvas=$('game'), ctx=canvas.getContext('2d');
+const storage={get(key,fallback){try{return localStorage.getItem('sow:'+key)??fallback;}catch{return fallback;}},set(key,value){try{localStorage.setItem('sow:'+key,String(value));}catch{/* Storage is optional. */}}};
+let mode=storage.get('mode','drift');if(!['drift','classic'].includes(mode))mode='drift';
+let state=createGame({mode,seed:Date.now()}), best=readBest(), last=0, accumulator=0, particles=[], sound=false, audio=null;
+const media=matchMedia('(prefers-reduced-motion: reduce)');
+let needsDraw=true, lastPeak=null;
+let calm=storage.get('calm',String(media.matches))==='true';
+function readBest(){const value=Number(storage.get('best:'+mode,'0'));return Number.isFinite(value)&&value>=0?Math.floor(value):0;}
+function announce(text){$('announcement').textContent=text;}
+function tone(peak=false){if(!sound||!audio)return;const time=audio.currentTime;for(let i=0;i<2;i++){const oscillator=audio.createOscillator(),gain=audio.createGain();oscillator.type='sine';oscillator.frequency.value=(peak?660:330)*(i?1.5:1);gain.gain.setValueAtTime(0,time+i*.06);gain.gain.linearRampToValueAtTime(.06,time+i*.06+.015);gain.gain.exponentialRampToValueAtTime(.001,time+i*.06+.18);oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(time+i*.06);oscillator.stop(time+i*.06+.2);}}
+function sync(){
+ needsDraw=true;
+ $('score').textContent=String(state.score).padStart(4,'0');$('best').textContent=String(best).padStart(4,'0');$('multiplier').textContent='×'+(state.combo+1);
+ $('meter').setAttribute('aria-valuenow',state.combo);[...$('meter').children].forEach((el,i)=>el.classList.toggle('active',i<state.combo));
+ $('arena-mode').textContent=mode==='drift'?'DRIFT FIELD':'CLASSIC FIELD';
+ $('mode-copy').innerHTML=mode==='drift'?'No borders. Wrap around the edges. <br>Your only enemy is yourself.':'Stay inside the garden. <br>The walls are part of the challenge.';
+ document.querySelectorAll('[data-mode]').forEach(button=>{button.setAttribute('aria-pressed',String(button.dataset.mode===mode));button.disabled=state.status==='running'||state.status==='paused';});
+ $('run-status').textContent=({ready:'READY WHEN YOU ARE',running:'DEEP IN THE GARDEN',paused:'TAKE A BREATHER',over:'BACK TO THE ROOTS',won:'GARDEN COMPLETE'})[state.status];
+ $('pause').disabled=!['running','paused'].includes(state.status);$('pause').innerHTML=state.status==='paused'?'Resume <kbd>P</kbd>':'Pause <kbd>P</kbd>';
+ $('end-run').hidden=state.status!=='paused';const visible=state.status!=='running';$('overlay').hidden=!visible;
+ const copy={ready:['A SMALL GAME. A BIG TRIP.','LET IT<br><i>GROW.</i>','One snake. Endless wrong turns.','Enter the garden'],paused:['A LITTLE ROOM TO BREATHE.','STAY<br><i>ROOTED.</i>','Your garden will be here.','Keep growing'],over:['EVERY END IS A NEW BEGINNING.','GOOD<br><i>TRIP.</i>',`Harvest: ${state.score} · Best: ${best}. One more seed?`,'Grow again'],won:['EVERY CORNER. EVERY BLOOM.','FULL<br><i>BLOOM.</i>',`An entire garden. ${state.score} points.`,'Plant another']};
+ if(visible){const c=copy[state.status];$('overlay-tag').textContent=c[0];$('overlay-title').innerHTML=c[1];$('overlay-copy').textContent=c[2];$('start').innerHTML=c[3]+' <span aria-hidden="true">↗</span>';}
+ $('motion').setAttribute('aria-pressed',String(calm));$('sound').setAttribute('aria-pressed',String(sound));$('sound').innerHTML=(sound?'Sound on':'Sound off')+' <span aria-hidden="true">↗</span>';
+}
+function start(){if(state.status==='paused'){togglePause(state);}else{state=createGame({mode,seed:Date.now()});state.status='running';particles=[];}accumulator=0;last=performance.now();sync();canvas.focus({preventScroll:true});announce('Game running. '+mode+' mode.');}
+function pause(){if(!['running','paused'].includes(state.status))return;togglePause(state);accumulator=0;sync();announce(state.status==='paused'?'Game paused.':'Game resumed.');if(state.status==='running')canvas.focus({preventScroll:true});else $('start').focus({preventScroll:true});}
+$('end-run').addEventListener('click',()=>{if(state.status!=='paused')return;state.status='over';sync();$('start').focus({preventScroll:true});announce('Run ended. Choose a habitat or grow again.');});
+$('start').addEventListener('click',start);$('pause').addEventListener('click',pause);
+document.querySelectorAll('[data-mode]').forEach(button=>button.addEventListener('click',()=>{if(['running','paused'].includes(state.status))return;mode=button.dataset.mode;storage.set('mode',mode);state=createGame({mode,seed:Date.now()});best=readBest();sync();announce(mode+' mode selected.');}));
+$('motion').addEventListener('click',()=>{calm=!calm;storage.set('calm',calm);particles=[];sync();});
+media.addEventListener('change',event=>{if(event.matches){calm=true;particles=[];sync();}});
+$('sound').addEventListener('click',async()=>{try{if(!audio){const Audio=window.AudioContext||window.webkitAudioContext;if(!Audio)throw Error('unsupported');audio=new Audio();}sound=!sound;if(sound){await audio.resume();tone(true);}else await audio.suspend();sync();}catch{sound=false;sync();announce('Sound is unavailable in this browser.');}});
+const keys={ArrowUp:'up',ArrowRight:'right',ArrowDown:'down',ArrowLeft:'left',w:'up',d:'right',s:'down',a:'left'};
+document.addEventListener('keydown',event=>{if(event.ctrlKey||event.metaKey||event.altKey)return;const key=event.key.length===1?event.key.toLowerCase():event.key;const direction=keys[key];const inGame=event.target instanceof Element&&Boolean(event.target.closest('.play-column'));if(direction&&inGame&&state.status==='running'){event.preventDefault();if(!event.repeat)queueDirection(state,direction);}else if(((key==='p'&&inGame)||key==='Escape')&&['running','paused'].includes(state.status)){event.preventDefault();if(!event.repeat)pause();}else if(key===' '&&event.target===canvas){event.preventDefault();if(!event.repeat){if(state.status==='running')pause();else start();}}});
+document.querySelectorAll('[data-dir]').forEach(button=>{button.addEventListener('pointerdown',event=>{event.preventDefault();queueDirection(state,button.dataset.dir);});button.addEventListener('click',event=>{if(event.detail===0)queueDirection(state,button.dataset.dir);});});
+let pointer=null;
+canvas.addEventListener('pointerdown',event=>{if(state.status!=='running')return;pointer={x:event.clientX,y:event.clientY,id:event.pointerId};canvas.setPointerCapture(event.pointerId);});

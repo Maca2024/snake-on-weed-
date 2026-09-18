@@ -1,0 +1,55 @@
+{
+  "timestamp": "2026-09-18T18:33:38.435692+00:00",
+  "reports": [
+    "docs/orchestration/design/report.json",
+    "docs/orchestration/recovery/report.json",
+    "docs/orchestration/review/report.json",
+    "docs/orchestration/review-recovery/claude-opus-5/report.json",
+    "docs/orchestration/review-recovery/deepseek/report.json",
+    "docs/orchestration/review-recovery/deepseek-micro/report.json",
+    "docs/orchestration/review-recovery/glm/report.json",
+    "docs/orchestration/review-recovery/grok-4.6/report.json",
+    "docs/orchestration/review-recovery/kimi-code/report.json",
+    "docs/orchestration/review-recovery/kimi-code-micro/report.json"
+  ],
+  "specialists": {
+    "astra": {
+      "design_completed": true,
+      "review_completed": true
+    },
+    "claude-opus-5": {
+      "design_completed": true,
+      "review_completed": true
+    },
+    "deepseek": {
+      "design_completed": true,
+      "review_completed": false
+    },
+    "gemini-flash": {
+      "design_completed": true,
+      "review_completed": true
+    },
+    "glm": {
+      "design_completed": true,
+      "review_completed": true
+    },
+    "grok-4.6": {
+      "design_completed": true,
+      "review_completed": true
+    },
+    "kimi-code": {
+      "design_completed": true,
+      "review_completed": false
+    },
+    "mistral-large": {
+      "design_completed": true,
+      "review_completed": true
+    }
+  },
+  "requests": 34,
+  "successful_responses": 24,
+  "missing_usage_responses": 1,
+  "reported_total_tokens": 183551,
+  "usage_complete": false,
+  "note": "Sum of provider-reported total_tokens, including failed/truncated attempts and integrator calls. Missing timeout usage makes this a lower bound. Response completion does not establish correctness. No monetary cost inferred."
+}

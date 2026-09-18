@@ -1,0 +1,55 @@
+{
+  "phase": "review",
+  "timestamp": "2026-09-18T18:29:45.965667+00:00",
+  "requested_models": [
+    "glm"
+  ],
+  "provider_count": 1,
+  "calls": [
+    {
+      "alias": "glm",
+      "role": "accessibility/performance",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 1491,
+        "prompt_tokens": 3474,
+        "total_tokens": 4965,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1281
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 64
+        }
+      },
+      "deployment_id": "25ab248f85fbfa96a248c989bb37417ae1821bcdbf455913b3c2a0714fe9b149",
+      "seconds": 20.62
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 434,
+        "prompt_tokens": 364,
+        "total_tokens": 798,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 231,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        }
+      },
+      "seconds": 15.36
+    }
+  ],
+  "all_succeeded": true
+}

@@ -1,0 +1,64 @@
+{
+  "phase": "review",
+  "timestamp": "2026-09-18T18:28:32.388683+00:00",
+  "requested_models": [
+    "claude-opus-5"
+  ],
+  "provider_count": 1,
+  "calls": [
+    {
+      "alias": "claude-opus-5",
+      "role": "architecture",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 2240,
+        "prompt_tokens": 4776,
+        "total_tokens": 7016,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "text_tokens": 2240
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "cache_creation_token_details": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          }
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global"
+      },
+      "deployment_id": "f7acbe6c4cf74b2531f60ccfac1b187a22f960a5df8efd6af5045d089f23f989",
+      "seconds": 31.96
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 329,
+        "prompt_tokens": 454,
+        "total_tokens": 783,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 94,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        }
+      },
+      "seconds": 11.71
+    }
+  ],
+  "all_succeeded": true
+}
