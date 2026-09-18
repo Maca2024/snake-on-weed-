@@ -1,0 +1,209 @@
+{
+  "phase": "review",
+  "timestamp": "2026-09-18T18:25:09.528877+00:00",
+  "requested_models": [
+    "claude-opus-5",
+    "astra",
+    "gemini-flash",
+    "mistral-large",
+    "grok-4.6",
+    "deepseek",
+    "kimi-code",
+    "glm"
+  ],
+  "provider_count": 8,
+  "calls": [
+    {
+      "alias": "astra",
+      "role": "gameplay rules",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 567,
+        "prompt_tokens": 9062,
+        "total_tokens": 9629,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 249,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 9059
+        }
+      },
+      "deployment_id": "1e400522f5df05f20e8a3e14f940fb8b749ccae509d7a205fb1b4e88a154de8e",
+      "seconds": 17.2
+    },
+    {
+      "alias": "gemini-flash",
+      "role": "visual/responsive design",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 3915,
+        "prompt_tokens": 10575,
+        "total_tokens": 14490,
+        "completion_tokens_details": {
+          "reasoning_tokens": 3474,
+          "text_tokens": 441
+        },
+        "prompt_tokens_details": {
+          "text_tokens": 10575
+        }
+      },
+      "deployment_id": "239e7eeec9dfe0117ba203d780c39ff9c613cf8bd36680096104275f45dd6736",
+      "seconds": 19.4
+    },
+    {
+      "alias": "mistral-large",
+      "role": "UX clarity",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 336,
+        "prompt_tokens": 10079,
+        "total_tokens": 10415,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "service_tier": "standard"
+      },
+      "deployment_id": "dd6d2fe6fa992427021524c53fcb64da1ce34940ce3b3bd453719d38a5ff771f",
+      "seconds": 7.37
+    },
+    {
+      "alias": "claude-opus-5",
+      "role": "architecture",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "usage": {
+        "completion_tokens": 3000,
+        "prompt_tokens": 14063,
+        "total_tokens": 17063,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "text_tokens": 3000
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "cache_creation_token_details": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          }
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global"
+      },
+      "deployment_id": "f7acbe6c4cf74b2531f60ccfac1b187a22f960a5df8efd6af5045d089f23f989",
+      "error": "HTTP 200",
+      "seconds": 42.94
+    },
+    {
+      "alias": "deepseek",
+      "role": "engine/tests",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "usage": {
+        "completion_tokens": 3000,
+        "prompt_tokens": 9911,
+        "total_tokens": 12911,
+        "completion_tokens_details": {
+          "reasoning_tokens": 3000
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 9911
+      },
+      "deployment_id": "14517a51d0a43f72793920b618d73199ffd8b2ae782adff18a86ae0c09ff296c",
+      "error": "HTTP 200",
+      "seconds": 32.22
+    },
+    {
+      "alias": "kimi-code",
+      "role": "browser input/lifecycle",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "usage": {
+        "completion_tokens": 3000,
+        "prompt_tokens": 9030,
+        "total_tokens": 12030,
+        "completion_tokens_details": {
+          "reasoning_tokens": 2999
+        }
+      },
+      "deployment_id": "c21a6f8f7bb40d8edc3c08967a0c9fb0ae76b439c2a56f8fef11719f35d9e37b",
+      "error": "HTTP 200",
+      "seconds": 48.13
+    },
+    {
+      "alias": "glm",
+      "role": "accessibility/performance",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "usage": {
+        "completion_tokens": 3000,
+        "prompt_tokens": 8901,
+        "total_tokens": 11901,
+        "completion_tokens_details": {
+          "reasoning_tokens": 2996
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "deployment_id": "25ab248f85fbfa96a248c989bb37417ae1821bcdbf455913b3c2a0714fe9b149",
+      "error": "HTTP 200",
+      "seconds": 43.34
+    },
+    {
+      "alias": "grok-4.6",
+      "role": "scoring/game feel",
+      "status": 408,
+      "ok": false,
+      "finish": null,
+      "usage": null,
+      "deployment_id": "123cf6a1074a3dbfa35b8e3789775d91bc32f5f99895787cbb9ae7990ca8b080",
+      "error": "litellm.Timeout: Timeout Error: XaiException - litellm.Timeout: Connection timed out. Timeout passed=120.0, time taken=120.03 seconds\n\nDeployment Info: request_timeout: None\ntimeout: 300.0",
+      "seconds": 120.08
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 527,
+        "prompt_tokens": 1293,
+        "total_tokens": 1820,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 233,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 1290
+        }
+      },
+      "seconds": 18.27
+    }
+  ],
+  "all_succeeded": false
+}

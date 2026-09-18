@@ -1,0 +1,56 @@
+{
+  "phase": "design",
+  "timestamp": "2026-09-18T18:22:31.378913+00:00",
+  "requested_models": [
+    "gemini-flash"
+  ],
+  "provider_count": 1,
+  "calls": [
+    {
+      "alias": "gemini-flash",
+      "role": "visual/responsive design",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 2694,
+        "prompt_tokens": 1515,
+        "total_tokens": 4209,
+        "completion_tokens_details": {
+          "reasoning_tokens": 2175,
+          "text_tokens": 519
+        },
+        "prompt_tokens_details": {
+          "text_tokens": 1515
+        }
+      },
+      "deployment_id": "239e7eeec9dfe0117ba203d780c39ff9c613cf8bd36680096104275f45dd6736",
+      "seconds": 14.47
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "usage": {
+        "completion_tokens": 792,
+        "prompt_tokens": 645,
+        "total_tokens": 1437,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 291,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 0
+        }
+      },
+      "seconds": 12.64
+    }
+  ],
+  "all_succeeded": true
+}

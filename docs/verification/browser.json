@@ -1,0 +1,28 @@
+{
+  "browser": "Chromium",
+  "version": "143.0.7499.4",
+  "desktop": "1440x1150",
+  "mobile": "390x844 DPR2",
+  "checks": [
+    "start",
+    "keyboard turn",
+    "pause/resume",
+    "classic wall death",
+    "restart",
+    "blur auto-pause",
+    "mode persistence",
+    "audio toggle",
+    "calm toggle",
+    "reduced motion",
+    "touch controls",
+    "no horizontal overflow",
+    "no JavaScript errors",
+    "real food pickup",
+    "best score persistence",
+    "blocked storage",
+    "320px viewport",
+    "end paused run",
+    "no external network requests"
+  ],
+  "errors": []
+}

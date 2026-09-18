@@ -1,0 +1,210 @@
+{
+  "phase": "design",
+  "timestamp": "2026-09-18T18:14:06.013322+00:00",
+  "provider_count": 8,
+  "calls": [
+    {
+      "alias": "gemini-flash",
+      "role": "Art director: propose a distinctive acid-green / warm-ivory on near-black editorial arcade, procedural arena visuals, organic snake and non-flashing feedback.",
+      "status": 200,
+      "ok": false,
+      "finish": "length",
+      "seconds": 10.88,
+      "usage": {
+        "completion_tokens": 1996,
+        "prompt_tokens": 3013,
+        "total_tokens": 5009,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1889,
+          "text_tokens": 107
+        },
+        "prompt_tokens_details": {
+          "text_tokens": 3013
+        }
+      },
+      "deployment_id": "239e7eeec9dfe0117ba203d780c39ff9c613cf8bd36680096104275f45dd6736"
+    },
+    {
+      "alias": "astra",
+      "role": "Gameplay systems critic: define fair turn buffering, collision/tail rules, full-board win, pause and exploit prevention. Give acceptance tests.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 15.66,
+      "usage": {
+        "completion_tokens": 612,
+        "prompt_tokens": 2436,
+        "total_tokens": 3048,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 2433
+        }
+      },
+      "deployment_id": "1e400522f5df05f20e8a3e14f940fb8b749ccae509d7a205fb1b4e88a154de8e"
+    },
+    {
+      "alias": "claude-opus-5",
+      "role": "Lead architect: propose the smallest robust dependency-free Canvas game architecture, state transitions and integration contract.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 20.23,
+      "usage": {
+        "completion_tokens": 1265,
+        "prompt_tokens": 4042,
+        "total_tokens": 5307,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "text_tokens": 1265
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_creation_tokens": 0,
+          "cache_creation_token_details": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          }
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "inference_geo": "global"
+      },
+      "deployment_id": "f7acbe6c4cf74b2531f60ccfac1b187a22f960a5df8efd6af5045d089f23f989"
+    },
+    {
+      "alias": "mistral-large",
+      "role": "UX writer: give concise English UI copy, controls, onboarding, mode descriptions and a memorable visual identity. Avoid fake award claims.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 11.5,
+      "usage": {
+        "completion_tokens": 795,
+        "prompt_tokens": 2703,
+        "total_tokens": 3498,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "service_tier": "standard"
+      },
+      "deployment_id": "dd6d2fe6fa992427021524c53fcb64da1ce34940ce3b3bd453719d38a5ff771f"
+    },
+    {
+      "alias": "deepseek",
+      "role": "Engine engineer: give deterministic grid logic and a concrete ES module API with input buffering, wrap/classic modes, seeded random and tests.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 9.4,
+      "usage": {
+        "completion_tokens": 1201,
+        "prompt_tokens": 2716,
+        "total_tokens": 3917,
+        "completion_tokens_details": {
+          "reasoning_tokens": 62
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2716
+      },
+      "deployment_id": "14517a51d0a43f72793920b618d73199ffd8b2ae782adff18a86ae0c09ff296c"
+    },
+    {
+      "alias": "kimi-code",
+      "role": "Interaction engineer: keyboard, touch/swipe, pause on blur, audio opt-in and mobile layout. Flag real browser edge cases.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 12.83,
+      "usage": {
+        "completion_tokens": 899,
+        "prompt_tokens": 2471,
+        "total_tokens": 3370,
+        "completion_tokens_details": {
+          "reasoning_tokens": 323
+        }
+      },
+      "deployment_id": "c21a6f8f7bb40d8edc3c08967a0c9fb0ae76b439c2a56f8fef11719f35d9e37b"
+    },
+    {
+      "alias": "glm",
+      "role": "Accessibility and performance reviewer: reduced motion, contrast, focus, canvas text alternatives, bounded particle counts and sound controls.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 23.1,
+      "usage": {
+        "completion_tokens": 1453,
+        "prompt_tokens": 2428,
+        "total_tokens": 3881,
+        "completion_tokens_details": {
+          "reasoning_tokens": 712
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "deployment_id": "25ab248f85fbfa96a248c989bb37417ae1821bcdbf455913b3c2a0714fe9b149"
+    },
+    {
+      "alias": "grok-4.6",
+      "role": "Game designer: propose one compelling risk/reward twist, short-run progression, replayability and tactile juice without feature creep.",
+      "status": 200,
+      "ok": true,
+      "finish": "stop",
+      "seconds": 41.62,
+      "usage": {
+        "completion_tokens": 504,
+        "prompt_tokens": 3400,
+        "total_tokens": 5262,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 1358,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 512,
+          "text_tokens": 3400,
+          "image_tokens": 0
+        },
+        "num_sources_used": 0,
+        "cost_in_usd_ticks": 172040000
+      },
+      "deployment_id": "123cf6a1074a3dbfa35b8e3789775d91bc32f5f99895787cbb9ae7990ca8b080"
+    },
+    {
+      "alias": "codex",
+      "role": "integrator",
+      "status": 200,
+      "ok": true,
+      "usage": {
+        "completion_tokens": 1103,
+        "prompt_tokens": 6041,
+        "total_tokens": 7144,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": 0,
+          "audio_tokens": 0,
+          "reasoning_tokens": 381,
+          "rejected_prediction_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "cache_write_tokens": 6038
+        }
+      }
+    }
+  ],
+  "all_succeeded": false
+}
