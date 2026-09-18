@@ -38,3 +38,8 @@ Original Python files and tracked virtual environment are unchanged. The browser
 - All eight completed design contributions; six completed code-review responses. DeepSeek and Kimi review attempts remained truncated despite bounded targeted recoveries. Do not describe these as eight passing reviewers.
 - Full audit, accepted/rejected findings, and reported token totals: `docs/orchestration/README.md` and `summary.json`.
 - Later audit-only commits do not change the game assets; the live verification identifies the tested game commit explicitly.
+
+
+## Vercel publication
+
+The requested Vercel production site is https://snake-on-weed-arcade.vercel.app/ (project in `aetherlinks-projects-ef204315`). GitHub is connected. `vercel.json` uses a dependency-free Node build into `dist/`; the original Python environment and orchestration artifacts are excluded from deployment. All 19 browser checks passed against the public Vercel alias; static assets returned HTTP 200. GitHub Pages remains available as a mirror.

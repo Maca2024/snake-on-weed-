@@ -1,0 +1,37 @@
+{
+  "browser": "Chromium",
+  "version": "143.0.7499.4",
+  "desktop": "1440x1150",
+  "mobile": "390x844 DPR2",
+  "checks": [
+    "start",
+    "keyboard turn",
+    "pause/resume",
+    "classic wall death",
+    "restart",
+    "blur auto-pause",
+    "mode persistence",
+    "audio toggle",
+    "calm toggle",
+    "reduced motion",
+    "touch controls",
+    "no horizontal overflow",
+    "no JavaScript errors",
+    "real food pickup",
+    "best score persistence",
+    "blocked storage",
+    "320px viewport",
+    "end paused run",
+    "no external network requests"
+  ],
+  "errors": [],
+  "url": "https://snake-on-weed-arcade.vercel.app/",
+  "deployment_id": "dpl_29VCFjmN6DDd3Ky4dkNw3Pn3r4G7",
+  "timestamp": "2026-09-18T18:39:52.332475+00:00",
+  "asset_checks": {
+    "/": 200,
+    "src/main.js": 200,
+    "assets/fonts/fonts.css": 200,
+    "assets/fonts/font-0.ttf": 200
+  }
+}

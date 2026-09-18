@@ -1,6 +1,6 @@
 # Snake on Weed · Acid Arcade
 
-**[Play in your browser](https://maca2024.github.io/snake-on-weed-/)**
+**[Play on Vercel](https://snake-on-weed-arcade.vercel.app/)** ? [GitHub Pages mirror](https://maca2024.github.io/snake-on-weed-/)
 
 ![Acid Arcade desktop](docs/screenshots/desktop.png)
 
@@ -72,3 +72,18 @@ Do not place a proxy key in the browser, source files, or reports. Calls use thr
 Browser validation targets Chromium. Sound depends on browser audio support. The canvas game remains a visual spatial game; DOM controls and score announcements do not make it fully playable without sight. No awards are claimed.
 
 The repository's pre-existing tracked `venv/` is retained to avoid deleting original work. It is not required for the browser edition and should not be deployed. For the original Python game, create your own environment and install Pygame instead of relying on the checked-in environment.
+
+## Vercel deployment
+
+The GitHub repository is connected to the Vercel project `snake-on-weed-arcade`. Production URL: https://snake-on-weed-arcade.vercel.app/.
+
+`vercel.json` runs `node scripts/build_site.mjs` and serves `dist/`. The build copies only the game entry point, source, and local assets. `.vercelignore` excludes the original Python environment, model reports, and test tooling from uploads. Project credentials and `.vercel/` are not committed.
+
+For an authenticated CLI deployment from this repository:
+
+```sh
+vercel link --yes --project snake-on-weed-arcade --scope aetherlinks-projects-ef204315
+vercel deploy --prod --yes --scope aetherlinks-projects-ef204315
+```
+
+The first production deployment passed all 19 browser checks, and the HTML, JavaScript, CSS, and local font files returned HTTP 200. Evidence: `docs/verification/vercel.json`.
